@@ -1,23 +1,30 @@
+require "mongo_mapper"
 require "jkl"
 
-lab = "http://feeds.feedburner.com/LabourPartyNews?format=xml"
-con = "http://www.conservatives.com/XMLGateway/RSS/News.xml"
-lib = "http://www.libdems.org.uk/latest_news.aspx?view=RSS"
-green = "http://www.greenparty.org.uk/news.rss"
+require "lib/models"
 
-feeds = [lab, con, lib, green]
-all_desc = []
-party_tags = []
-feeds.each do |feed|
-  descriptions = Jkl::Rss::descriptions(Jkl::Rss::items(Jkl::get_xml_from(feed)))
+config = {}
+begin
+  config = YAML::load_file('config/config.yml')
+rescue Errno::ENOENT => e
+end
+
+mongo_host = ENV['MONGO_HOST'] || config['mongo-host']
+mongo_db   = ENV['MONGO_DB']   || config['mongo-db'] 
+mongo_user = ENV['MONGO_USER'] || config['mongo-user'] 
+mongo_pass = ENV['MONGO_PASS'] || config['mongo-pass'] 
+
+MongoMapper.connection = Mongo::Connection.new(mongo_host, 27017)
+MongoMapper.database = mongo_db
+MongoMapper.database.authenticate(mongo_user, mongo_pass)
+
+
+key = ENV['CALAIS_KEY'] || YAML::load_file("config/keys.yml")["calais"]
+Party.all.each do |party|    
+  descriptions = Jkl::Rss::descriptions(
+      Jkl::Rss::items(Jkl::get_xml_from(party.url)))
   descriptions = descriptions.map do |description|
     Jkl::Text::strip_all_tags(description)
   end
-  all_desc << descriptions
-  descriptions.each do |description|
-    #party_tags << Jkl::Extraction::tags("pha8v7tap4zfxtmax3ry4nu9", description)
-  end
+  Cluster.new({:tags => Jkl::Extraction::tags(key, descriptions.flatten)}).save!
 end
-puts Jkl::Extraction::tags("pha8v7tap4zfxtmax3ry4nu9", all_desc[0])
-
-puts party_tags.inspect
