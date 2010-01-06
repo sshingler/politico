@@ -26,5 +26,7 @@ Party.all.each do |party|
   descriptions = descriptions.map do |description|
     Jkl::Text::strip_all_tags(description)
   end
-  Cluster.new({:tags => Jkl::Extraction::tags(key, descriptions.flatten)}).save!
+  Cluster.new({
+      :tags => Jkl::Extraction::tags(key, descriptions.flatten),
+      :party_id => party.id}).save!
 end

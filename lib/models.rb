@@ -15,7 +15,7 @@ class Cluster
   include MongoMapper::Document
 
   key :tags, Hash
-
+  key :party_id, ObjectId
   timestamps!
 
   validates_uniqueness_of :tags
