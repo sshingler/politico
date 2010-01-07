@@ -8,7 +8,11 @@ require "jkl"
 require "lib/models"
 
 get '/' do
-  
+  lab = Party.find_by_name("Labour")
+  puts lab.clusters.class
+  cluster = lab.clusters[lab.clusters.length-1]
+  @tags = cluster.tags
+  haml :index
 end
 
 get '/create' do
