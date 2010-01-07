@@ -1,2 +1,3 @@
 calais
+mongo_mapper
 jakal --version '>= 0.1.3'

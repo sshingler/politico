@@ -1,6 +1,5 @@
 require "rubygems"
 require "sinatra"
-require "chowder"
 require "app"
 
 config = {}
