@@ -24,7 +24,7 @@ key = ENV['CALAIS_KEY'] || YAML::load_file("config/keys.yml")["calais"]
 
 today = Time.now
 
-task :cron => :environment do
+task :cron do #=> :environment do
    puts "Updating clusters..."
    Party.all.each do |party|
      begin
