@@ -1,0 +1,11 @@
+#content
+  - @tags.each do |category,tag_array|
+    %h2
+      = category
+    %div{:class => "tags"}
+      %ul
+        - counter = 0
+        - tag_array.each do |tag|
+          %li{:class =>"tag#{counter}"}
+            - counter = counter + 1
+            = tag

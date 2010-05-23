@@ -7,17 +7,32 @@ require "jkl"
 
 require "lib/models"
 
+config = {}
+begin
+  config = YAML::load_file('config/config.yml')
+rescue Errno::ENOENT => e
+end
+
+mongo_host = ENV['MONGO_HOST'] || config['mongo-host']
+mongo_db   = ENV['MONGO_DB']   || config['mongo-db'] 
+mongo_user = ENV['MONGO_USER'] || config['mongo-user'] 
+mongo_pass = ENV['MONGO_PASS'] || config['mongo-pass'] 
+
+MongoMapper.connection = Mongo::Connection.new(mongo_host, 27017)
+MongoMapper.database = mongo_db
+MongoMapper.database.authenticate(mongo_user, mongo_pass)
+
+key = ENV['CALAIS_KEY'] || YAML::load_file("config/keys.yml")["calais"]
+
 get '/' do
-  lab = Party.find_by_name("Labour")
-  puts lab.clusters.class
-  cluster = lab.clusters[lab.clusters.length-1]
-  @tags = cluster.tags
+  @trends = Trend.all(:created_at.gte => 24.hours.ago)
   haml :index
 end
 
-get '/create' do
-  Party.create({:name => "Labour", :url => "http://feeds.feedburner.com/LabourPartyNews?format=xml"}).save
-  Party.create({:name => "Conservative", :url => "http://www.conservatives.com/XMLGateway/RSS/News.xml"}).save
-  Party.create({:name => "LibDem", :url => "http://www.libdems.org.uk/latest_news.aspx?view=RSS"}).save
-  Party.create({:name => "Green", :url => "http://www.greenparty.org.uk/news.rss"}).save
+get '/:trend/cluster' do
+  name = CGI::unescape(params[:trend])
+  @trend = Trend.find_by_name(name)
+  cluster = Cluster.find_by_trend_id(@trend.id)
+  @tags = cluster.tags
+  haml :cluster
 end
