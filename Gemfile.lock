@@ -1,5 +1,5 @@
 --- 
-hash: 5b146b13d0d68cef53cc00898c94711f7610be15
+hash: 5b70f23874f2b6bf1d25d5633e29d9b4ca1cbdf0
 sources: 
 - Rubygems: 
     uri: http://gemcutter.org
@@ -35,7 +35,7 @@ specs:
 - rest-client: 
     version: 1.5.1
 - jakal: 
-    version: 0.1.93
+    version: 0.1.94
 - jnunemaker-validatable: 
     version: 1.8.4
 - mongo: 
@@ -56,7 +56,7 @@ dependencies:
     group: 
     - :default
   jakal: 
-    version: = 0.1.93
+    version: = 0.1.94
     group: 
     - :default
   bson_ext: 
