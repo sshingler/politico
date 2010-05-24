@@ -1,5 +1,5 @@
 --- 
-hash: fb0361fd21218b8a49d59e9469d39affb1a3bb43
+hash: 5b146b13d0d68cef53cc00898c94711f7610be15
 sources: 
 - Rubygems: 
     uri: http://gemcutter.org
@@ -48,6 +48,8 @@ specs:
     version: 0.7.6
 - rack-flash: 
     version: 0.1.1
+- shotgun: 
+    version: "0.6"
 dependencies: 
   sinatra: 
     version: = 1.0
@@ -83,5 +85,9 @@ dependencies:
     - :default
   rake: 
     version: = 0.8.7
+    group: 
+    - :default
+  shotgun: 
+    version: = 0.6
     group: 
     - :default

@@ -1,4 +1,5 @@
 #content
+  %h3 Click a trend, view the things associated with it:
   - @trends.each do |trend|
     %ul
       - counter = 0
@@ -6,3 +7,10 @@
         - counter = counter + 1
         %a{:href => "/#{CGI::escape(trend.name.gsub("#",""))}/tags"}
           = trend.name
+  %h3 Or, Create a new trend (it will take a couple of minutes)
+  %form{:action => '/create', :method => 'post'}
+    %p
+      %label{:for => 'trend'} Trend:
+      %input.query{:type => 'text', :name => 'trend', :size => '20', :title => 'trend', :id => 'trend', :class => "title"}
+      %input.create{:type => 'submit', :name => 'create', :id => 'create', :value => 'Create Trend'}   
+  

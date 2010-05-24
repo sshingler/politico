@@ -37,6 +37,11 @@ get '/:trend/tags' do
   haml :tags
 end
 
+post '/create' do
+  Politico::crawl_trend(params[:trend])
+  redirect "/"
+end
+
 get '/:trend/article' do
   name = CGI::unescape(params[:trend])
   @trend = Trend.find_by_name(name)

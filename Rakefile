@@ -27,6 +27,6 @@ task :cron do
 end
 
 task :save_trend do
-  Politico::crawl_trend("Tory")
+  Politico::crawl_trend("Artificial life")
   puts "save completed."  
 end
