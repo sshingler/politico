@@ -1,11 +1,11 @@
 --- 
-hash: 85b02d4893fca043e6d41a8976ec38f12e5ca840
+hash: 473767b4468145ddd9433b6a7a7ef4a2fc6c5f64
 sources: 
 - Rubygems: 
     uri: http://gemcutter.org
 specs: 
 - activesupport: 
-    version: 2.3.6
+    version: 2.3.7
 - bson: 
     version: "1.0"
 - bson_ext: 
@@ -44,6 +44,8 @@ specs:
     version: 0.7.6
 - rack-flash: 
     version: 0.1.1
+- shotgun: 
+    version: "0.6"
 dependencies: 
   sinatra: 
     version: = 1.0
@@ -73,3 +75,7 @@ dependencies:
     version: = 0.1.1
     group: 
     - :default
+  shotgun: 
+    version: ">= 0"
+    group: 
+    - :development

@@ -7,3 +7,7 @@ gem "mongo_mapper", "0.7.6"
 gem "haml", "3.0.4"
 gem "chowder", "0.2.4.1"
 gem "rack-flash", "0.1.1"
+
+group :development do
+  gem "shotgun", "0.6"
+end  

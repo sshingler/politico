@@ -30,16 +30,9 @@ get '/:trend/tags' do
   clusters = Cluster.find_all_by_trend_id(@trend.id)
   all_tags = clusters.map{|cluster| cluster.tags}
   @tags = {}
-  all_tags.each{ |t| 
-    puts ""
-    puts "&&&&&&&&&&&&&&&&&&&&"
-    puts "merging: #{@tags}"
-    puts ""
-    puts "with #{t}"
-    @tags.merge!(t) 
-    
-    #TODO merging isn't working - need to work out how to add merge in each individual array for each key
-  }
+  all_tags.each_with_index do |t|
+    @tags = @tags.keep_merge(t)
+  end
   puts @tags.inspect
   haml :tags
 end
