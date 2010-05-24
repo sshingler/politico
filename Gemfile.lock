@@ -1,5 +1,5 @@
 --- 
-hash: 6c8cf2ae3dbb300949083d8e24b9a0b11b0b2e96
+hash: fb0361fd21218b8a49d59e9469d39affb1a3bb43
 sources: 
 - Rubygems: 
     uri: http://gemcutter.org
@@ -40,6 +40,8 @@ specs:
     version: 1.8.4
 - mongo: 
     version: "1.0"
+- mongo_ext: 
+    version: 0.19.3
 - plucky: 
     version: 0.1.1
 - mongo_mapper: 
@@ -61,6 +63,10 @@ dependencies:
     - :default
   mongo_mapper: 
     version: = 0.7.6
+    group: 
+    - :default
+  mongo_ext: 
+    version: = 0.19.3
     group: 
     - :default
   haml: 
