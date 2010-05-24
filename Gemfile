@@ -1,7 +1,7 @@
 source :gemcutter
 
 gem "sinatra", "1.0"
-gem "jakal", "0.1.94"
+gem "jakal", "0.1.95"
 gem "bson_ext", "1.0"
 gem "mongo_mapper", "0.7.6"
 gem "mongo_ext", "0.19.3"
