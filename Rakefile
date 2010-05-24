@@ -16,7 +16,8 @@ mongo_db   = ENV['MONGO_DB']   || config['mongo-db']
 mongo_user = ENV['MONGO_USER'] || config['mongo-user'] 
 mongo_pass = ENV['MONGO_PASS'] || config['mongo-pass'] 
 
-MongoMapper.connection = Mongo::Connection.new(mongo_host, 27017)
+
+MongoMapper.connection = Mongo::Connection.new(mongo_host, 27049)
 MongoMapper.database = mongo_db
 MongoMapper.database.authenticate(mongo_user, mongo_pass)
 
@@ -26,6 +27,6 @@ task :cron do
 end
 
 task :save_trend do
-  Politico::crawl_trend("Roland Garros")
+  Politico::crawl_trend("Tory")
   puts "save completed."  
 end

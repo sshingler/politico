@@ -1,9 +1,11 @@
 --- 
-hash: 85b02d4893fca043e6d41a8976ec38f12e5ca840
+hash: 6c8cf2ae3dbb300949083d8e24b9a0b11b0b2e96
 sources: 
 - Rubygems: 
     uri: http://gemcutter.org
 specs: 
+- rake: 
+    version: 0.8.7
 - activesupport: 
     version: 2.3.7
 - bson: 
@@ -71,5 +73,9 @@ dependencies:
     - :default
   rack-flash: 
     version: = 0.1.1
+    group: 
+    - :default
+  rake: 
+    version: = 0.8.7
     group: 
     - :default
