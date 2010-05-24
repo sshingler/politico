@@ -6,6 +6,7 @@ require "mongo_mapper"
 require "jkl"
 
 require "lib/models"
+require "lib/politico"
 
 begin
   # Require the preresolved locked set of gems.
@@ -17,16 +18,43 @@ rescue LoadError
   Bundler.setup
 end
 
+
 get '/' do
   @trends = Trend.all(:created_at.gte => 24.hours.ago)
   haml :index
 end
 
-get '/:trend/cluster' do
-  key = ENV['CALAIS_KEY'] || YAML::load_file("config/keys.yml")["calais"]
+get '/:trend/tags' do
   name = CGI::unescape(params[:trend])
   @trend = Trend.find_by_name(name)
-  cluster = Cluster.find_by_trend_id(@trend.id)
-  @tags = cluster.tags
-  haml :cluster
+  clusters = Cluster.find_all_by_trend_id(@trend.id)
+  all_tags = clusters.map{|cluster| cluster.tags}
+  @tags = {}
+  all_tags.each{ |t| 
+    puts ""
+    puts "&&&&&&&&&&&&&&&&&&&&"
+    puts "merging: #{@tags}"
+    puts ""
+    puts "with #{t}"
+    @tags.merge!(t) 
+    
+    #TODO merging isn't working - need to work out how to add merge in each individual array for each key
+  }
+  puts @tags.inspect
+  haml :tags
+end
+
+get '/:trend/article' do
+  name = CGI::unescape(params[:trend])
+  @trend = Trend.find_by_name(name)
+  # t, @text = Politico::add_urls(@trend)
+  # puts "got these articles: #{@text}"
+  # unless @text.empty?
+  #   begin
+  #     @tags = Jkl::Extraction::tags(@text.join(" ")[0..99999])
+  #   rescue Calais::Error => ce
+  #     puts ce.inspect
+  #   end
+  # end
+  # haml :article
 end

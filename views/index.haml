@@ -4,5 +4,8 @@
       - counter = 0
       %li{:class =>"tag#{counter}"}
         - counter = counter + 1
-        %a{:href => "/#{CGI::escape(trend.name.gsub("#",""))}/cluster"}
+        %a{:href => "/#{CGI::escape(trend.name.gsub("#",""))}/tags"}
           = trend.name
+        &nbsp;
+        %a{:href => "/#{CGI::escape(trend.name.gsub("#",""))}/article"}
+          url

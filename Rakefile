@@ -20,10 +20,12 @@ MongoMapper.connection = Mongo::Connection.new(mongo_host, 27017)
 MongoMapper.database = mongo_db
 MongoMapper.database.authenticate(mongo_user, mongo_pass)
 
-key = ENV['CALAIS_KEY'] || YAML::load_file("config/keys.yml")["calais"]
-
 task :cron do
-  key = YAML::load_file('config/keys.yml')['calais']
-  Politico::crawl(key)
+  Politico::crawl
   puts "Cron Job - crawling - completed."
+end
+
+task :save_trend do
+  Politico::crawl_trend("Roland Garros")
+  puts "save completed."  
 end
