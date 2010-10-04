@@ -1,5 +1,5 @@
 --- 
-hash: 9421f9b2bdbec05bb2a9359912029f408feb4e4e
+hash: 357a248506bf68379eeed07524c2bfd51145cc85
 sources: 
 - Rubygems: 
     uri: http://gemcutter.org
@@ -7,9 +7,7 @@ specs:
 - rake: 
     version: 0.8.7
 - activesupport: 
-    version: 2.3.8
-- archive-tar-minitar: 
-    version: 0.5.2
+    version: 3.0.0
 - bson: 
     version: "1.0"
 - bson_ext: 
@@ -28,24 +26,20 @@ specs:
     version: "1.0"
 - chowder: 
     version: 0.2.4.1
-- columnize: 
-    version: 0.3.1
 - haml: 
     version: 3.0.4
 - hpricot: 
     version: 0.8.2
+- i18n: 
+    version: 0.4.1
 - mime-types: 
     version: "1.16"
 - rest-client: 
-    version: 1.6.0
+    version: 1.6.1
 - jakal: 
     version: 0.1.95
 - jnunemaker-validatable: 
     version: 1.8.4
-- ruby_core_source: 
-    version: 0.1.4
-- linecache19: 
-    version: 0.5.11
 - mongo: 
     version: "1.0"
 - mongo_ext: 
@@ -56,23 +50,27 @@ specs:
     version: 0.7.6
 - rack-flash: 
     version: 0.1.1
-- ruby-debug-base19: 
-    version: 0.11.23
-- ruby-debug19: 
-    version: 0.11.6
 - shotgun: 
     version: "0.6"
 dependencies: 
-  sinatra: 
+  bson_ext: 
     version: = 1.0
+    group: 
+    - :default
+  chowder: 
+    version: = 0.2.4.1
+    group: 
+    - :default
+  haml: 
+    version: = 3.0.4
+    group: 
+    - :default
+  i18n: 
+    version: = 0.4.1
     group: 
     - :default
   jakal: 
     version: = 0.1.95
-    group: 
-    - :default
-  bson_ext: 
-    version: = 1.0
     group: 
     - :default
   mongo_mapper: 
@@ -81,14 +79,6 @@ dependencies:
     - :default
   mongo_ext: 
     version: = 0.19.3
-    group: 
-    - :default
-  haml: 
-    version: = 3.0.4
-    group: 
-    - :default
-  chowder: 
-    version: = 0.2.4.1
     group: 
     - :default
   rack-flash: 
@@ -103,9 +93,7 @@ dependencies:
     version: = 0.6
     group: 
     - :default
-  ruby-debug19: 
-    version: = 0.11.6
+  sinatra: 
+    version: = 1.0
     group: 
-    - :development
-    require: []
-
+    - :default
