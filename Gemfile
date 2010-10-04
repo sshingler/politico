@@ -10,3 +10,7 @@ gem "chowder", "0.2.4.1"
 gem "rack-flash", "0.1.1"
 gem "rake", "0.8.7"
 gem "shotgun", "0.6"
+
+group :development do
+  gem "ruby-debug19", "0.11.6", :require => nil    
+end

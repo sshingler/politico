@@ -1,5 +1,5 @@
 --- 
-hash: a30db556bf18de1f0c191b5d898636d3921098c5
+hash: 9421f9b2bdbec05bb2a9359912029f408feb4e4e
 sources: 
 - Rubygems: 
     uri: http://gemcutter.org
@@ -7,25 +7,29 @@ specs:
 - rake: 
     version: 0.8.7
 - activesupport: 
-    version: 2.3.7
+    version: 2.3.8
+- archive-tar-minitar: 
+    version: 0.5.2
 - bson: 
     version: "1.0"
 - bson_ext: 
     version: "1.0"
 - curb: 
-    version: 0.7.3
+    version: 0.7.8
 - json: 
-    version: 1.4.3
+    version: 1.4.6
 - nokogiri: 
-    version: 1.4.2
+    version: 1.4.3.1
 - calais: 
-    version: 0.0.9
+    version: 0.0.11
 - rack: 
-    version: 1.1.0
+    version: 1.2.1
 - sinatra: 
     version: "1.0"
 - chowder: 
     version: 0.2.4.1
+- columnize: 
+    version: 0.3.1
 - haml: 
     version: 3.0.4
 - hpricot: 
@@ -33,11 +37,15 @@ specs:
 - mime-types: 
     version: "1.16"
 - rest-client: 
-    version: 1.5.1
+    version: 1.6.0
 - jakal: 
     version: 0.1.95
 - jnunemaker-validatable: 
     version: 1.8.4
+- ruby_core_source: 
+    version: 0.1.4
+- linecache19: 
+    version: 0.5.11
 - mongo: 
     version: "1.0"
 - mongo_ext: 
@@ -48,6 +56,10 @@ specs:
     version: 0.7.6
 - rack-flash: 
     version: 0.1.1
+- ruby-debug-base19: 
+    version: 0.11.23
+- ruby-debug19: 
+    version: 0.11.6
 - shotgun: 
     version: "0.6"
 dependencies: 
@@ -91,3 +103,9 @@ dependencies:
     version: = 0.6
     group: 
     - :default
+  ruby-debug19: 
+    version: = 0.11.6
+    group: 
+    - :development
+    require: []
+
