@@ -20,17 +20,25 @@ module Politico
       trend = Trend.new({:name => name})
       Jkl::topix_links(CGI::escape(trend.name.gsub("#",""))).each do |url|
         trend.urls << url
-        text = Jkl::Text::sanitize(Jkl::get_from(url), 12)
+        text = get_text_from(url)
         begin
           next if text.empty?
-          tags = Jkl::Extraction::tags(KEY, text)
-          Cluster.create({:trend_id => trend.id, :tags => tags})
-          trend.save
+          extract_and_persist_tags(text)
         rescue Calais::Error => ce
           puts ce.inspect
         end
       end
     end
+    
+    def get_text_from(url)
+      Jkl::Text::sanitize(Jkl::get_from(url), 12)
+    end
+    
+    def extract_and_persist_tags(text)
+      tags = Jkl::Extraction::tags(KEY, text)
+      Cluster.create({:trend_id => trend.id, :tags => tags})
+      trend.save
+    end 
   end
 end
 

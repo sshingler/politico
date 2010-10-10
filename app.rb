@@ -18,6 +18,16 @@ rescue LoadError
   Bundler.setup
 end
 
+KEY = ENV['CALAIS_KEY'] || YAML::load_file("config/keys.yml")["calais"]
+
+
+enable :sessions
+
+get '/categorize-your-website' do
+  text = Jkl::Text::sanitize(Jkl::get_from("http://#{params[:url]}"), 1)
+  @tags = Jkl::Extraction::tags(KEY, text)
+  haml :tags
+end
 
 get '/' do
   @trends = Trend.all(:created_at.gte => 24.hours.ago)
